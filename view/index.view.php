@@ -12,206 +12,34 @@
 
     <style>
 
-        @import url('https://fonts.googleapis.com/css?family=Oswald');
-        *
-        {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            box-sizing: border-box
-        }
-
         body
         {
-            background-color: #dadde6;
-            font-family: arial
+            background-color: #3b3b3b;
+            font-family: "Helvetica Neue";
         }
-
-        .fl-left{float: left}
-
-        .fl-right{float: right}
-
-        .container
-        {
-            width: 90%;
-            margin: 100px auto
+        .aukstis{
+            height: 300px;
+            background: rgb(12,88,68);
+            background: linear-gradient(90deg, rgba(12,88,68,1) 0%, rgba(32,167,136,1) 49%, rgba(0,255,158,1) 100%);
         }
+        .flight{
+            height: 300px;
 
-        h1
-        {
-            text-transform: uppercase;
-            font-weight: 900;
-            border-left: 10px solid #fec500;
-            padding-left: 10px;
-            margin-bottom: 30px
-        }
-
-        .row{overflow: hidden}
-
-        .card
-        {
-            display: table-row;
-            width: 49%;
-            background-color: #fff;
-            color: #989898;
-            margin-bottom: 10px;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            border-radius: 4px;
-            position: relative
-        }
-
-        .card + .card{margin-left: 2%}
-
-        .date
-        {
-            display: table-cell;
-            width: 25%;
-            position: relative;
+            background-color: #000000;
             text-align: center;
-            border-right: 2px dashed #dadde6
+        }
+        .aukstis3{
+            height: 50px;
+        };
+        .main {
+            display: flex;
         }
 
-        .date:before,
-        .date:after
-        {
-            content: "";
-            display: block;
-            width: 30px;
-            height: 30px;
-            background-color: #DADDE6;
-            position: absolute;
-            top: -15px ;
-            right: -15px;
-            z-index: 1;
-            border-radius: 50%
-        }
+        .aukstis1{
+            height: 100px;
+        };
 
-        .date:after
-        {
-            top: auto;
-            bottom: -15px
-        }
 
-        .date time
-        {
-            display: block;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%)
-        }
-
-        .date time span{display: block}
-
-        .date time span:first-child
-        {
-            color: #2b2b2b;
-            font-weight: 600;
-            font-size: 250%
-        }
-
-        .date time span:last-child
-        {
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-top: -10px
-        }
-
-        .card-cont
-        {
-            display: table-cell;
-            width: 75%;
-            font-size: 85%;
-            padding: 10px 10px 30px 50px
-        }
-
-        .card-cont h3
-        {
-            color: #3C3C3C;
-            font-size: 130%
-        }
-
-        .row:last-child .card:last-of-type .card-cont h3
-        {
-            text-decoration: line-through
-        }
-
-        .card-cont > div
-        {
-            display: table-row
-        }
-
-        .card-cont .even-date i,
-        .card-cont .even-info i,
-        .card-cont .even-date time,
-        .card-cont .even-info p
-        {
-            display: table-cell
-        }
-
-        .card-cont .even-date i,
-        .card-cont .even-info i
-        {
-            padding: 5% 5% 0 0
-        }
-
-        .card-cont .even-info p
-        {
-            padding: 30px 50px 0 0
-        }
-
-        .card-cont .even-date time span
-        {
-            display: block
-        }
-
-        .card-cont a
-        {
-            display: block;
-            text-decoration: none;
-            width: 80px;
-            height: 30px;
-            background-color: #D8DDE0;
-            color: #fff;
-            text-align: center;
-            line-height: 30px;
-            border-radius: 2px;
-            position: absolute;
-            right: 10px;
-            bottom: 10px
-        }
-
-        .row:last-child .card:first-child .card-cont a
-        {
-            background-color: #037FDD
-        }
-
-        .row:last-child .card:last-child .card-cont a
-        {
-            background-color: #F8504C
-        }
-
-        @media screen and (max-width: 860px)
-        {
-            .card
-            {
-                display: block;
-                float: none;
-                width: 100%;
-                margin-bottom: 10px
-            }
-
-            .card + .card{margin-left: 0}
-
-            .card-cont .even-date,
-            .card-cont .even-info
-            {
-                font-size: 75%
-            }
-        }
     </style>
 </head>
 <body>
@@ -249,14 +77,6 @@
             else if ($_POST["bag"] >= 20|| $_POST["bag"] == 25|| $_POST["bag"] == 30 ){
                 $_POST['price'] += 30;
             }
-
-
-
-
-
-
-
-
             if (!preg_match('/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/',$_POST['email'])){
                 $validation[] = 'Neįvestas el. paštas';}
             if (!preg_match('/^\w{1,200}$/',$_POST['message'])){
@@ -265,24 +85,74 @@
 
             <?php endif ?>
     <?php if (isset($_POST['send']) & empty($validation)):?>
-    <section>
 
-        <div class="container">
-            <div class="row">
-        <h2>Flight Ticket</h2>
+
+        <div class="main shadow-lg rounded aukstis mt-4">
+            <div class="aukstis1 row">
+            <h1 class="display-4 rounded col-2 text-light flight">Flight Ticket</h1>
+
 
         <?php foreach ($_POST as $duomenys => $value):?>
         <?php if($duomenys != "send"):?>
 
-    <li class=" col"><span><?=htmlspecialchars($duomenys);?>:  <?=htmlspecialchars(ucfirst($value));?></li>
+                <?php if ($duomenys == "flightNumber"):?>
+                <h4 class=" col-1">Flight Number: <?=htmlspecialchars(ucfirst($value));?></h4>
+            <?php endif;?>
+
+                <?php if ($duomenys == "arrival"):?>
+                    <h4 class=" col-1 ">Arrival : <?=htmlspecialchars(ucfirst($value));?></h4>
+                <?php endif;?>
+
+                <?php if ($duomenys == "departure"):?>
+                    <h4 class="col-1">Departure : <?=htmlspecialchars(ucfirst($value));?></h4>
+                    <h1 class="display-3 col-1"> > </h1>
+                <?php endif;?>
 
 
 
-        <?php endif;?>
+
+
+
+
+                <?php if ($duomenys == "idName"):?>
+
+                    <h4 class="col-1 ">ID: <?=htmlspecialchars(ucfirst($value));?></h4>
+                <?php endif;?>
+                <?php if ($duomenys == "name"):?>
+                    <h4 class="col-1">Name: <?=htmlspecialchars(ucfirst($value));?></h4>
+                <?php endif;?>
+
+
+                <?php if ($duomenys == "lastname"):?>
+                    <h4 class="col-1">LastName: <?=htmlspecialchars(ucfirst($value));?></h4>
+
+
+                <?php endif;?>
+                <?php if ($duomenys == "email"):?>
+                    <h4 class="">Email: <?=htmlspecialchars(ucfirst($value));?></h4>
+                <?php endif;?>
+                <?php if ($duomenys == "bag"):?>
+                    <h4 class="col-1">Baggage: <?=htmlspecialchars(ucfirst($value));?>kg.</h4>
+
+                <?php endif;?>
+                <?php if ($duomenys == "price"):?>
+                <div class="row">
+                    <h4 class="col-1">Price: <?=htmlspecialchars(ucfirst($value));?>€</h4>
+                <?php endif;?>
+                <?php if ($duomenys == "message"):?>
+                    <h6 class="col-1">Information: <?=htmlspecialchars(ucfirst($value));?></h6>
+                <?php endif;?>
+
+
+
+
+
+            <?php endif;?>
         <?php endforeach;?>
         </div>
         </div>
-    </section>
+
+
 
 
 <?php else:?>
@@ -292,9 +162,9 @@
 </div>
 <?php endforeach;?>
 
-    <form method="post">
+    <form method="post" class="text-white">
 
-        <div class="form-group mt-4">
+        <div class="form-group mt-4 text-white">
         <label for="name">Skrydžio numeris: </label>
         <select name="flightNumber" aria-label="Default select example"  >
 
@@ -306,7 +176,7 @@
         </div>
 
             <div class="form-group mt-4">
-                <label for="name">Iš kur skrendate?  </label>
+                <label class="text-white" for="name">Iš kur skrendate?  </label>
                 <select name="departure" aria-label="Default select example"  >
 
                     <option selected>Pasirinkite miestą</option>
