@@ -39,6 +39,11 @@
             height: 300px;
         };
 
+        .aukstis3{
+            height: 150px;
+        };
+
+
 
     </style>
 </head>
@@ -47,121 +52,103 @@
 
         <?php
         $validation = [];
-        if (isset($_POST['send'])):?>
+        if (isset($_POST['send'])){
+         validate($_POST);
+         if (empty($validation)){
+         printing($_POST);}}?>
 
 
-            <?php
-
-            if ($_POST["flightNumber"] == "Pasirinkite skrydžio numerį"||!preg_match('/./',$_POST["flightNumber"])){
-                $validation[] = 'Nepasirinkote skrydžio numerio';}
-
-            if (!preg_match('/\d{11}/',$_POST['idName'])){
-                $validation[] = 'Blogai įvestas arba neįvestas asmens kodas';}
-
-            if (!preg_match('/[A-Z]./',$_POST['name'])){
-                $validation[] = 'Neįvedete vardo';}
-            if (!preg_match('/[A-Z]./',$_POST['lastname'])){
-                $validation[] = 'Neįvedete pavardės';}
-
-            if ($_POST["departure"] == "Pasirinkite miestą"||!preg_match('/./',$_POST["departure"])){
-                $validation[] = 'Nepasirinkote iš kur skrendate';}
-
-            if ($_POST["arrival"] == "Pasirinkite miestą"||!preg_match('/./',$_POST["arrival"])){
-                $validation[] = 'Nepasirinkote į kur skrendate';}
+    <?php
+    if (isset($_POST['prnt'])){
+        validate($_POST);
+    if (empty($validation)){
+    printing($_POST);
+        table();}}?>
 
 
-
-
-            if (!preg_match('/\d{1,5}/',$_POST['price'])){$validation[] = 'Blogai įvesta arba neįvesta kaina';}
-
-            if ($_POST["bag"] == "Pasirinkite bagažo svorį" || !preg_match('/./',$_POST["bag"])){
-                $validation[] = 'Nepasirinkote bagažo svorio';}
-            else if ($_POST["bag"] >= 20|| $_POST["bag"] == 25|| $_POST["bag"] == 30 ){
-                $_POST['price'] += 30;
-            }
-            if (!preg_match('/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/',$_POST['email'])){
-                $validation[] = 'Neįvestas el. paštas';}
-            if (!preg_match('/^\w{1,200}$/',$_POST['message'])){
-                $validation[] = 'Neįvedėte žinutės arba viršijote simbolių kiekį';}
-            ?>
-
-            <?php endif ?>
     <?php if (isset($_POST['send']) & empty($validation)):?>
 
 
         <div class="main shadow-lg rounded aukstis mt-4">
 
-            <div class="aukstis1 row">
-                <div class="col-2 rounded flight">
-                 <h1 class="display-4  text-light ">Flight Ticket</h1>
-                </div>
+            <div class="row aukstis1">
+                <div class="col-md-2 flight rounded text-light display-4">Flight Ticket</div>
+                <div class="col-md-10">
+
+
 
 
 
         <?php foreach ($_POST as $duomenys => $value):?>
         <?php if($duomenys != "send"):?>
 
-                <?php if ($duomenys == "flightNumber"):?>
-                <div class="col-2 mt-4 aukstis3">
-                <h4 >Flight Number: <?=htmlspecialchars(ucfirst($value));?></h4>
-                </div>
+                    <?php if ($duomenys == "flightNumber"):?>
+                        <div class="row aukstis ">
+                            <div class="col" >
+                                <h1>Flight Number <?=htmlspecialchars(ucfirst($value));?></h1>
+                            </div>
+                            <?php endif;?>
 
-            <?php endif;?>
+                            <?php if ($duomenys == "departure"):?>
+                                <div class=" mt-4 col-2" >
+                                    <h3>  Departure   <?=htmlspecialchars(ucfirst($value));?> --></h3>
+                                </div>
+                            <?php endif;?>
 
-                <?php if ($duomenys == "idName"):?>
-                <div class="col-1 ">
-                    <h4 >ID: <?=htmlspecialchars(ucfirst($value));?></h4>
-                <?php endif;?>
-                <?php if ($duomenys == "name"):?>
-                    <h4 class="col-1">Name: <?=htmlspecialchars(ucfirst($value));?></h4>
-                </div>
-                <?php endif;?>
+                            <?php if ($duomenys == "arrival"):?>
+                            <div class="mt-4 col" >
+                                <h3> Arrival  <?=htmlspecialchars(ucfirst($value));?></h3>
+                            </div>
+                            <?php endif;?>
 
+                            <?php if ($duomenys == "price"):?>
+                            <div class="mt-4 col" >
+                                <h4>   Price  <?=htmlspecialchars(ucfirst($value));?>$</h4>
+                            </div>
+                            <?php endif;?>
 
-                <?php if ($duomenys == "lastname"):?>
-                    <h4 class="col-1">LastName: <?=htmlspecialchars(ucfirst($value));?></h4>
-                </div>
-                </div>
+                            <?php if ($duomenys == "idName"):?>
+                            <div class=" mt-4 mr-4 col" >
+                                <h3>   ID  <?=htmlspecialchars(ucfirst($value));?></h3>
+                            </div>
+                            <?php endif;?>
 
-                <?php endif;?>
+                            <?php if ($duomenys == "name" || $duomenys == "lastname"):?>
+                            <?php if ($duomenys == "name"):?>
+                            <div class="row aukstis3">
+                            <div class="ml-3 col" >
+                                <h4>   Name / Lastname  <?=htmlspecialchars(ucfirst($value));?>
+                                <?php else:?>
+                                <?=htmlspecialchars(ucfirst($value));?></h4>
 
-                <?php if ($duomenys == "departure"):?>
-
-                <div class="col-2 mt-3 aukstis3">
-                    <h4 class="col-1">Departure : <?=htmlspecialchars(ucfirst($value));?></h4>
-                    <h1 class="display-3"> > </h1>
-                <?php endif;?>
-
-                <?php if ($duomenys == "arrival"):?>
-                <div class="col-2 aukstis3">
-                    <h4 class=" col-1 ">Arrival : <?=htmlspecialchars(ucfirst($value));?></h4>
-                </div>
-                </div>
-            </div>
-                <?php endif;?>
-
-
-
-
-
-
+                            </div>
+                            <?php endif;?>
+                                <?php endif;?>
 
 
 
 
-                <?php if ($duomenys == "email"):?>
-                    <h4 class="">Email: <?=htmlspecialchars(ucfirst($value));?></h4>
-                <?php endif;?>
-                <?php if ($duomenys == "bag"):?>
-                    <h4 class="col-1">Baggage: <?=htmlspecialchars(ucfirst($value));?>kg.</h4>
 
-                <?php endif;?>
-                <?php if ($duomenys == "price"):?>
-                    <h4 class="col-1">Price: <?=htmlspecialchars(ucfirst($value));?>€</h4>
-                <?php endif;?>
-                <?php if ($duomenys == "message"):?>
-                    <h6 class="col-1">Information: <?=htmlspecialchars(ucfirst($value));?></h6>
-                <?php endif;?>
+                            <?php if ($duomenys == "bag"):?>
+                            <div class="col-2" >
+                              <h4> Baggage <?=htmlspecialchars(ucfirst($value));?>kg. </h4>
+                            </div>
+                            <?php endif;?>
+
+                            <?php if ($duomenys == "email"):?>
+                            <div class="col-3 mr-2">
+                             <h4> Email <?=htmlspecialchars(ucfirst($value));?></h4>
+                                </div>
+                                <?php endif;?>
+
+                            <?php if ($duomenys == "message"):?>
+                            <div class="ml-4 col">
+                                <h4> Information <?=htmlspecialchars(ucfirst($value));?></h4>
+                            </div>
+                            <?php endif;?>
+
+
+
 
 
 
@@ -170,7 +157,9 @@
             <?php endif;?>
         <?php endforeach;?>
         </div>
-        </div>
+                </div>
+            </div>
+        </div
 
 
 
@@ -183,8 +172,8 @@
 <?php endforeach;?>
 
     <form method="post" class="text-white">
-
-        <div class="form-group mt-4 text-white">
+<div class="row">
+        <div class="col form-group mt-4 text-white">
         <label for="name">Skrydžio numeris: </label>
         <select name="flightNumber" aria-label="Default select example"  >
 
@@ -195,7 +184,7 @@
         </select>
         </div>
 
-            <div class="form-group mt-4">
+            <div class="col form-group mt-4">
                 <label class="text-white" for="name">Iš kur skrendate?  </label>
                 <select name="departure" aria-label="Default select example"  >
 
@@ -206,7 +195,7 @@
                 </select>
             </div>
 
-        <div class="form-group mt-4">
+        <div class="col form-group mt-4">
             <label for="name">Į kur skrendate?  </label>
             <select name="arrival" aria-label="Default select example"  >
 
@@ -216,6 +205,7 @@
                 <?php endforeach?>
             </select>
         </div>
+</div>
 
         <div class="form-group">
             <input for="price" name="price" type="number" class="form-control" placeholder="įveskite siūlomą kainą">
@@ -258,7 +248,8 @@
             <label for="message">Pastabos</label>
             <textarea class="form-control" id="message" rows="3" name="message" ></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" name="send">Spausdinti</button>
+        <button type="submit" class="btn btn-primary" name="send">Spausdinti bilietą</button>
+        <button type="submit" class="btn btn-primary" name="prnt">Spausdinti lentelę</button>
 
 
     </form>
