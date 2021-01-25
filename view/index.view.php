@@ -183,7 +183,7 @@
 
     <form method="post" class="text-white">
 <div class="row">
-        <div class="col form-group mt-4 text-white">
+        <div class="col-5 form-group mt-4 text-white">
         <label for="name">Skrydžio numeris: </label>
         <select name="flightNumber" aria-label="Default select example"  >
 

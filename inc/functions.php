@@ -79,9 +79,7 @@
          }
      }
      echo "</tr></table> ";
-   echo "<button type='button' class='btn btn-light' onclick='history.go(-1);'>Atgal </button>";
-
- };
+   echo "<button type='button' class='btn btn-light' onclick='history.go(-1);'>Atgal </button>";};
 
 
 
