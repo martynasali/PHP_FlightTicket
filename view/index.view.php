@@ -169,13 +169,15 @@
 
 
 
-<?php elseif(!isset($_POST['prnt'])):?>
+
 
     <?php foreach ($validation as $error):?>
     <div class="col alert alert-danger" role="alert">
     <?=$error;?>
 </div>
 <?php endforeach;?>
+
+            <?php elseif(!isset($_POST['prnt'])):?>
 
 
 
