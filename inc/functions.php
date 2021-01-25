@@ -62,7 +62,7 @@
  function table(){
      $messages = file_get_contents('data/flights.txt', true);
      $messages = explode('/n', $messages);
-     echo "<table class='table table-striped' ><tr> ";
+     echo "<table class='table table-dark bg-secondary table-hover' ><tr> ";
      echo "<th>Skrydžio numeris</th> <th>Departure</th> <th>Arrival</th> <th>Siūloma kaina</th> <th>Asmens kodas</th>
 <th>Vardas</th> <th>Pavarde</th> <th>Bagažas</th> <th>Email</th> <th>Pastabos</th>
 </tr>";
@@ -79,6 +79,8 @@
          }
      }
      echo "</tr></table> ";
+   echo "<button type='button' class='btn btn-light' onclick='history.go(-1);'>Atgal </button>";
+
  };
 
 

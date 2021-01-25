@@ -63,7 +63,9 @@
         validate($_POST);
     if (empty($validation)){
     printing($_POST);
-        table();}}?>
+        table();}}
+    ?>
+
 
 
     <?php if (isset($_POST['send']) & empty($validation)):?>
@@ -156,20 +158,28 @@
 
             <?php endif;?>
         <?php endforeach;?>
+
         </div>
                 </div>
             </div>
-        </div
+
+        </div>
+   <button type='button' class='btn btn-light mt-4' onclick='history.go(-1);'>Atgal</button>
 
 
 
 
-<?php else:?>
+<?php elseif(!isset($_POST['prnt'])):?>
+
     <?php foreach ($validation as $error):?>
-    <div class="alert alert-danger" role="alert">
+    <div class="col alert alert-danger" role="alert">
     <?=$error;?>
 </div>
 <?php endforeach;?>
+
+
+
+
 
     <form method="post" class="text-white">
 <div class="row">
@@ -184,7 +194,7 @@
         </select>
         </div>
 
-            <div class="col form-group mt-4">
+            <div class="col ml-4 form-group mt-4">
                 <label class="text-white" for="name">Iš kur skrendate?  </label>
                 <select name="departure" aria-label="Default select example"  >
 
@@ -195,7 +205,7 @@
                 </select>
             </div>
 
-        <div class="col form-group mt-4">
+        <div class="col ml-4 form-group mt-4">
             <label for="name">Į kur skrendate?  </label>
             <select name="arrival" aria-label="Default select example"  >
 
@@ -257,6 +267,8 @@
 
 
 </div>
+
+
 
 
 <!-- Optional JavaScript; choose one of the two! -->
