@@ -177,8 +177,6 @@
 </div>
 <?php endforeach;?>
 
-            <?php elseif(!isset($_POST['prnt'])):?>
-
 
 
 
