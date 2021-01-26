@@ -52,10 +52,11 @@
 
         <?php
         $validation = [];
+
         if (isset($_POST['send'])){
          validate($_POST);
          if (empty($validation)){
-         printing($_POST);}}?>
+             printing($_POST);}}?>
 
 
     <?php
@@ -64,6 +65,7 @@
     if (empty($validation)){
     printing($_POST);
         table();}}
+
     ?>
 
 
@@ -169,14 +171,27 @@
 
 
 
-<?php elseif(!isset($_POST['prnt'])):?>
+<?php elseif(!empty($validation)):?>
 
     <?php foreach ($validation as $error):?>
     <div class="col alert alert-danger" role="alert">
     <?=$error;?>
 </div>
 <?php endforeach;?>
+<?php endif ?>
 
+
+
+
+
+
+
+
+
+
+
+
+        <?php if(!empty($validation) || !isset($_POST["prnt"]) && !isset($_POST["send"])):?>
 
 
 
@@ -283,4 +298,5 @@
 -->
 </body>
 </html>
-<?php endif;?>
+
+<?php endif; ?>
